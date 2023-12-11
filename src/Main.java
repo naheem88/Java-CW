@@ -6,6 +6,11 @@ public class Main {
         String proceed = "Y";
         WestminsterShoppingManager shopManager = new WestminsterShoppingManager();
         shopManager.loadInfo();
+        HomeGUI homeFrame = new HomeGUI(shopManager);
+        // Settings for the frame
+        homeFrame.setSize(900,600);
+        homeFrame.setVisible(true);
+        homeFrame.setDefaultCloseOperation(homeFrame.EXIT_ON_CLOSE);
         while (proceed.equals("Y")) {
             System.out.print("""
                     Please select an option:
@@ -35,11 +40,11 @@ public class Main {
                         shopManager.saveToFile();
                         break;
                     case 5:
-                        HomeGUI homeFrame = new HomeGUI(shopManager);
-                        // Settings for the frame
-                        homeFrame.setSize(900,600);
-                        homeFrame.setVisible(true);
-                        homeFrame.setDefaultCloseOperation(homeFrame.EXIT_ON_CLOSE);
+//                        HomeGUI homeFrame = new HomeGUI(shopManager);
+//                        // Settings for the frame
+//                        homeFrame.setSize(900,600);
+//                        homeFrame.setVisible(true);
+//                        homeFrame.setDefaultCloseOperation(homeFrame.EXIT_ON_CLOSE);
                         break;
                     case 0:
                         System.out.println("\nThank you for using this program");
