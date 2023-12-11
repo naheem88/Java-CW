@@ -22,7 +22,7 @@ public class HomeGUI extends JFrame {
         menu = new JPanel();
 
         menu.add(new JLabel("Select Product Category"));
-        menu.add(new JComboBox(new String[] {"All", "Electronics", "Clothing"}));
+        menu.add(new JComboBox<>(new String[] {"All", "Electronics", "Clothing"}));
         cartBtn = new JButton("Shopping Cart");
 
         topPanel.add(menu);
