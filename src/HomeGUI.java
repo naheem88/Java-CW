@@ -9,9 +9,9 @@ public class HomeGUI extends JFrame {
     JPanel menu;
     JComboBox productTypeList;
     JButton cartBtn;
-    ProductTableModel tableModel;
+    ProductTableModel mainTableModel;
     JTable productTable;
-    JScrollPane scrollPane;
+    JScrollPane mainScrollPane;
     JPanel selectedProductPanel;
     JTextArea textArea;
     JButton addToShoppingCartBtn;
@@ -20,9 +20,11 @@ public class HomeGUI extends JFrame {
     private List<Product> electronicList;
     private List<Product> clothingList;
     private Product selectedProduct;
+    private ShoppingCart userShoppingCart;
 
     public HomeGUI(WestminsterShoppingManager shopManager) {
         this.setTitle("Westminster Online Shopping Centre");
+        userShoppingCart = new ShoppingCart();
         this.setLayout(new BorderLayout());
 
         topPanel = new JPanel();
@@ -69,7 +71,7 @@ public class HomeGUI extends JFrame {
 
     private class shpCartBtnHandler extends MouseAdapter {
         public void mouseClicked(MouseEvent event) {
-            ShoppingCartGUI shopCartFrame = new ShoppingCartGUI();
+            ShoppingCartGUI shopCartFrame = new ShoppingCartGUI(userShoppingCart.getProductList());
             // Settings for the frame
             shopCartFrame.setSize(800, 600);
             shopCartFrame.setVisible(true);
@@ -101,7 +103,7 @@ public class HomeGUI extends JFrame {
     private class productTypeHandler implements ItemListener {
         public void itemStateChanged(ItemEvent event) {
             if (event.getStateChange() == ItemEvent.SELECTED) {
-                HomeGUI.this.remove(scrollPane);
+                HomeGUI.this.remove(mainScrollPane);
                 textArea.setText("");
                 selectedProductPanel.remove(addToShoppingCartBtn);
                 HomeGUI.this.repaint();
@@ -118,16 +120,15 @@ public class HomeGUI extends JFrame {
 
     private class addToShoppingCartHandler extends MouseAdapter {
         public void mouseClicked(MouseEvent event) {
-            ShoppingCart userShoppingCart = new ShoppingCart();
             userShoppingCart.addProduct(selectedProduct);
         }
     }
 
     private void createTable(List<Product> productList) {
-        tableModel = new ProductTableModel(productList);
-        productTable = new JTable(tableModel);
-        scrollPane = new JScrollPane(productTable);
-        this.add(scrollPane, BorderLayout.CENTER);
+        mainTableModel = new ProductTableModel(productList);
+        productTable = new JTable(mainTableModel);
+        mainScrollPane = new JScrollPane(productTable);
+        this.add(mainScrollPane, BorderLayout.CENTER);
         productTable.addMouseListener(new productSelectedHandler());
     }
 }

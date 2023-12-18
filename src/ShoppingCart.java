@@ -4,7 +4,6 @@ import java.util.List;
 public class ShoppingCart {
     private List<Product> productList;
     private double totalPrice;
-
     public ShoppingCart() {
         this.productList = new ArrayList<>();
     }
@@ -18,7 +17,7 @@ public class ShoppingCart {
     }
 
     public void removeProduct(String productId) {
-        for(int count = 0; count < this.productList.size(); count++) {
+        for (int count = 0; count < this.productList.size(); count++) {
             if (productId.equals((this.productList.get(count)).getProductId())) {
                 this.productList.remove(count);
                 break;
