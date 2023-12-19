@@ -72,7 +72,7 @@ public class HomeGUI extends JFrame {
 
     private class shpCartBtnHandler extends MouseAdapter {
         public void mouseClicked(MouseEvent event) {
-            ShoppingCartGUI shopCartFrame = new ShoppingCartGUI(userShoppingCart.getProductList());
+            ShoppingCartGUI shopCartFrame = new ShoppingCartGUI(userShoppingCart.getProductList(), userShoppingCart.getProductQuantityHashMap());
             // Settings for the frame
             shopCartFrame.setSize(800, 600);
             shopCartFrame.setVisible(true);

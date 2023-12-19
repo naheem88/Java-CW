@@ -5,20 +5,10 @@ public class ShoppingTableModel extends AbstractTableModel {
     private final String[] colNames = {"Product", "Quantity", "Price (£)"};
     private final List<Product> shoppingCart;
     private Map<String,Integer> productQuantityHashMap;
-    public ShoppingTableModel(List<Product> userShoppingCart) {
-        Set<Product> removeDuplicateProduct = new HashSet<>(userShoppingCart);
-        shoppingCart = new ArrayList<>(removeDuplicateProduct);
-        Collections.sort(shoppingCart);
-        productQuantityHashMap = new HashMap<>();
-        for (Product product: userShoppingCart) {
-            int count = 0;
-            for (Product product2: userShoppingCart) {
-                if (product2.getProductId().equals(product.getProductId())) {
-                    count++;
-                }
-            }
-            productQuantityHashMap.put(product.getProductId(), count);
-        }
+
+    public ShoppingTableModel(List<Product> userShoppingCart, HashMap<String, Integer> productQuantityHashMap) {
+        this.shoppingCart = userShoppingCart;
+        this.productQuantityHashMap = productQuantityHashMap;
     }
 
     @Override
@@ -36,12 +26,13 @@ public class ShoppingTableModel extends AbstractTableModel {
     public Object getValueAt(int rowNum, int colNum) {
         Object tableValue = null;
         String productId = this.shoppingCart.get(rowNum).getProductId();
+        int productQuantity = this.productQuantityHashMap.get(productId);
         if (colNum == 0) {
             tableValue = productId + ", " + this.shoppingCart.get(rowNum).getProductInfo();
         } else if (colNum == 1) {
-            tableValue = productQuantityHashMap.get(productId);
+            tableValue = productQuantity;
         } else if (colNum == 2) {
-            tableValue = this.shoppingCart.get(rowNum).getProductPrice() + " £";
+            tableValue = ((this.shoppingCart.get(rowNum).getProductPrice()) * productQuantity) + " £";
         }
         return tableValue;
     }
