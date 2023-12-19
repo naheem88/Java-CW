@@ -67,6 +67,7 @@ public class HomeGUI extends JFrame {
         this.add(selectedProductPanel, BorderLayout.SOUTH);
         cartBtn.addMouseListener(new shpCartBtnHandler());
         productTypeList.addItemListener(new productTypeHandler());
+        addToShoppingCartBtn.addMouseListener(new addToShoppingCartHandler());
     }
 
     private class shpCartBtnHandler extends MouseAdapter {
@@ -90,7 +91,6 @@ public class HomeGUI extends JFrame {
                         textArea.setText(productSelectedInfo);
                         selectedProductPanel.add(addToShoppingCartBtn);
                         selectedProduct = product;
-                        addToShoppingCartBtn.addMouseListener(new addToShoppingCartHandler());
                         // Refreshes the JFrame
                         HomeGUI.this.repaint();
                         break;
