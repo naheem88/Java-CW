@@ -4,6 +4,7 @@ public class ShoppingCart {
     private List<Product> productList;
     private List<Product> duplicateProductList;
     private double totalPrice;
+
     private HashMap<String, Integer> productQuantityHashMap;
 
     public ShoppingCart() {
@@ -14,6 +15,10 @@ public class ShoppingCart {
 
     public List<Product> getProductList() {
         return this.productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 
     public void addProduct(Product product) {
@@ -53,7 +58,8 @@ public class ShoppingCart {
 
     public double totPrice() {
         for (Product product : this.productList) {
-            this.totalPrice += product.getProductPrice();
+            double totProductPrice = ((product.getProductPrice()) * (productQuantityHashMap.get(product.getProductId())));
+            this.totalPrice += totProductPrice;
         }
         return this.totalPrice;
     }
@@ -61,4 +67,9 @@ public class ShoppingCart {
     public HashMap<String, Integer> getProductQuantityHashMap() {
         return productQuantityHashMap;
     }
+
+    public void setProductQuantityHashMap(HashMap<String, Integer> productQuantityHashMap) {
+        this.productQuantityHashMap = productQuantityHashMap;
+    }
+
 }
