@@ -67,8 +67,6 @@ public class ShoppingCart {
     public double categoryDiscount(double totalPrice) {
         for (Product product : this.productList) {
             if (productQuantityHashMap.get(product.getProductId()) >= 3) {
-                System.out.println("Hi");
-                System.out.println(Math.round((totalPrice * 0.2)));
                 return Math.round((totalPrice * 0.2));
             }
         }
