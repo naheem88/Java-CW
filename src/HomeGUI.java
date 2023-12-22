@@ -132,5 +132,3 @@ public class HomeGUI extends JFrame {
         productTable.addMouseListener(new productSelectedHandler());
     }
 }
-
-

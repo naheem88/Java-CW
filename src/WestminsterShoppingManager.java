@@ -144,4 +144,3 @@ public class WestminsterShoppingManager implements ShoppingManager {
         System.out.println();
     }
 }
-

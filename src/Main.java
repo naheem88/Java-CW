@@ -37,7 +37,7 @@ public class Main {
                     case 5:
                         UserLoginGUI userLoginFrame = new UserLoginGUI(shopManager);
                         // Settings for the frame
-                        userLoginFrame.setSize(900,600);
+                        userLoginFrame.setSize(480,280);
                         userLoginFrame.setVisible(true);
                         userLoginFrame.setDefaultCloseOperation(userLoginFrame.DISPOSE_ON_CLOSE);
                         break;
