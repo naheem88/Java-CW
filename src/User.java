@@ -1,12 +1,12 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class User {
     private static String userName;
     private static String userPassword;
-    private List<String> regularUserList;
+
+    private HashMap<String, String> regularUserHashMap;
 
     public User(String userName, String userPassword) {
         User.userName = userName.stripLeading().stripTrailing();
@@ -14,7 +14,7 @@ public class User {
     }
 
     public User() {
-        regularUserList = new ArrayList<>();
+        regularUserHashMap = new HashMap<>();
         loadInfo();
     }
 
@@ -38,7 +38,7 @@ public class User {
     public void saveToFile() {
         try {
             BufferedWriter textWriter = new BufferedWriter(new FileWriter("UserList.txt", true));
-            textWriter.write(userName);
+            textWriter.write(userName + "," + userPassword);
             textWriter.newLine();
             textWriter.close();
         } catch (IOException exception) {
@@ -49,15 +49,18 @@ public class User {
     public void loadInfo() {
         try {
             File fileChecker = new File("UserList.txt");
-            if (fileChecker.exists() && !(userName.equals(""))) {
+            if (fileChecker.exists()) {
                 FileReader file = new FileReader("UserList.txt");
                 Scanner textReader = new Scanner(file);
                 while (textReader.hasNextLine()) {
-                    String fileData = textReader.nextLine();
-                    if (fileData.equals("")) {
+                    String textLine = textReader.nextLine();
+                    String[] fileData = textLine.split(",");
+                    System.out.println(fileData[0]);
+                    System.out.println(fileData[1]);
+                    if (textLine.equals("")) {
                         break;
                     }
-                    regularUserList.add(fileData);
+                    regularUserHashMap.put(fileData[0], fileData[1]);
                 }
                 file.close();
             }
@@ -66,14 +69,16 @@ public class User {
         }
     }
 
+    public HashMap<String, String> getRegularUserHashMap() {
+        return regularUserHashMap;
+    }
+
     public boolean newUser() {
-        if (userName.equals("")) {
-            return false;
+        if (regularUserHashMap == null) {
+            return true;
         }
-        for (String name: regularUserList) {
-            if (name.equals(userName)) {
-                return false;
-            }
+        if (regularUserHashMap.containsKey(userName)) {
+            return false;
         }
         return true;
     }
