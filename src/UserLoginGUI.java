@@ -50,5 +50,4 @@ public class UserLoginGUI extends JFrame {
             UserLoginGUI.this.dispose();
         }
     }
-
 }

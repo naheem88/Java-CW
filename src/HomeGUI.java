@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.List;
 public class HomeGUI extends JFrame {
     JPanel topPanel;
     JPanel menu;
-    JComboBox productTypeList;
+    JComboBox<String> productTypeList;
     JButton cartBtn;
     ProductTableModel mainTableModel;
     JTable productTable;
@@ -27,16 +29,23 @@ public class HomeGUI extends JFrame {
         userShoppingCart = new ShoppingCart();
         this.setLayout(new BorderLayout());
 
+        Border emptyBorder = BorderFactory.createEmptyBorder(10, 0, 70, 10);
+
         topPanel = new JPanel();
+        topPanel.setBorder(emptyBorder);
         menu = new JPanel();
 
+        topPanel.setLayout(new GridLayout(2, 4));
         menu.add(new JLabel("Select Product Category"));
         productTypeList = new JComboBox<>(new String[]{"All", "Electronics", "Clothing"});
         menu.add(productTypeList);
         cartBtn = new JButton("Shopping Cart");
 
-        topPanel.add(menu);
+        topPanel.add(new JLabel());
+        topPanel.add(new JLabel());
         topPanel.add(cartBtn);
+        topPanel.add(new JLabel());
+        topPanel.add(menu);
 
         productList = shopManager.getProductList();
         electronicList = new ArrayList<>();
@@ -55,12 +64,20 @@ public class HomeGUI extends JFrame {
 
         // Selected Product Panel
         selectedProductPanel = new JPanel();
-        selectedProductPanel.setLayout(new FlowLayout());
+        selectedProductPanel.setLayout(new GridLayout(2, 3));
         textArea = new JTextArea(7,1);
         textArea.setBackground(new Color(0, 0, 0, 0));
         textArea.setEditable(false);
+
         selectedProductPanel.add(textArea);
         addToShoppingCartBtn = new JButton("Add to Shopping Cart");
+        selectedProductPanel.add(new JLabel());
+        selectedProductPanel.add(new JLabel());
+        selectedProductPanel.add(new JLabel());
+
+         Border emptyBorder2 = BorderFactory.createEmptyBorder(10, 20, 10, 0);
+
+        selectedProductPanel.setBorder(emptyBorder2);
 
         // Adding the components to the frame
         this.add(topPanel, BorderLayout.NORTH);

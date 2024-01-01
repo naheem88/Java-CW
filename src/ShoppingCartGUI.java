@@ -22,7 +22,8 @@ public class ShoppingCartGUI extends JFrame{
         this.setTitle("Shopping Cart");
         this.setLayout(new BorderLayout());
         ShoppingCart shoppingCart = new ShoppingCart();
-        mainPanel = new JPanel(new FlowLayout());
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(4, 4));
 
         shoppingCartTableModel = new ShoppingTableModel(userShoppingCart, productQuantityHashMap);
         shoppingCartTable = new JTable(shoppingCartTableModel);
@@ -38,18 +39,33 @@ public class ShoppingCartGUI extends JFrame{
         User userInfo = new User();
         if (userInfo.newUser()) {
             newUserDiscountPrice = Math.round((totalPrice * 0.1));
-            newUserDiscount = new JLabel("First Purchase Discount (10%)     -" + newUserDiscountPrice + " £");
-            mainPanel.add(newUserDiscount);
+        } else {
+            newUserDiscountPrice = 0;
         }
+        newUserDiscount = new JLabel("First Purchase Discount (10%)");
+
         double finalTotPrice = totalPrice - (newUserDiscountPrice + categoryDiscountPrice);
 
-        totPrice = new JLabel("Total Price      " + totalPrice + " £");
-        categoryDiscount = new JLabel("Three Items in the same Category Discount (20%)      -" + categoryDiscountPrice + " £");
-        finalTotal = new JLabel("Final Total        " + finalTotPrice + " £");
+        totPrice = new JLabel("Total Price");
+        categoryDiscount = new JLabel("Three Items in the same Category Discount (20%)");
+        finalTotal = new JLabel("Final Total");
 
+        mainPanel.add(new JLabel());
+        mainPanel.add(new JLabel());
         mainPanel.add(totPrice);
+        mainPanel.add(new JLabel("  " + totalPrice + " £"));
+        mainPanel.add(new JLabel());
+        mainPanel.add(new JLabel());
+        mainPanel.add(newUserDiscount);
+        mainPanel.add(new JLabel("- " + newUserDiscountPrice + " £"));
+        mainPanel.add(new JLabel());
+        mainPanel.add(new JLabel());
         mainPanel.add(categoryDiscount);
+        mainPanel.add(new JLabel("- " + categoryDiscountPrice + " £"));
+        mainPanel.add(new JLabel());
+        mainPanel.add(new JLabel());
         mainPanel.add(finalTotal);
+        mainPanel.add(new JLabel("  " + finalTotPrice + " £"));
 
         buyBtn = new JButton("Buy");
 
