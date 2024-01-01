@@ -11,6 +11,8 @@ public class UserLoginGUI extends JFrame {
     private JPasswordField passwordField;
     private JButton loginBtn;
     private WestminsterShoppingManager shoppingManager;
+    JDialog dialogBox;
+    JLabel dialogBoxLabel;
 
     public UserLoginGUI(WestminsterShoppingManager shoppingManager) {
         setTitle("User Login");
@@ -42,12 +44,30 @@ public class UserLoginGUI extends JFrame {
             char[] passwordChars = passwordField.getPassword();
             String password = new String(passwordChars);
             User userInformation = new User(username, password);
-            HomeGUI homeFrame = new HomeGUI(shoppingManager);
-            // Settings for the frame
-            homeFrame.setSize(900,600);
-            homeFrame.setVisible(true);
-            homeFrame.setDefaultCloseOperation(homeFrame.DISPOSE_ON_CLOSE);
-            UserLoginGUI.this.dispose();
+            if (userInformation.getUserNameAndPasswordHashMap().containsKey(username)) {
+                if (userInformation.getUserNameAndPasswordHashMap().get(username).equals(password)) {
+                    createHomeFrame();
+                } else {
+                    dialogBox = new JDialog(UserLoginGUI.this, "Incorrect Password");
+                    dialogBoxLabel = new JLabel("Please Enter the Correct Password");
+                    dialogBox.add(dialogBoxLabel);
+                    dialogBox.setSize(280, 100);
+                    dialogBox.setVisible(true);
+                    usernameField.setText("");
+                    passwordField.setText("");
+                }
+            } else {
+                createHomeFrame();
+            }
         }
+    }
+
+    public void createHomeFrame() {
+        HomeGUI homeFrame = new HomeGUI(shoppingManager);
+        // Settings for the frame
+        homeFrame.setSize(900,600);
+        homeFrame.setVisible(true);
+        homeFrame.setDefaultCloseOperation(homeFrame.DISPOSE_ON_CLOSE);
+        UserLoginGUI.this.dispose();
     }
 }

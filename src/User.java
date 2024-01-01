@@ -1,22 +1,24 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class User {
     private static String userName;
     private static String userPassword;
-    private List<String> regularUserList;
+    private static HashMap<String, String> userNameAndPasswordHashMap;
 
     public User(String userName, String userPassword) {
         User.userName = userName.stripLeading().stripTrailing();
         User.userPassword = userPassword.stripLeading().stripTrailing();
+        userNameAndPasswordHashMap = new HashMap<>();
+        loadInfo();
     }
 
     public User() {
-        regularUserList = new ArrayList<>();
-        // Add username and password match validation
-        loadInfo();
+    }
+
+    public HashMap<String, String> getUserNameAndPasswordHashMap() {
+        return userNameAndPasswordHashMap;
     }
 
     public String getUserName() {
@@ -37,9 +39,12 @@ public class User {
 
     // Implement the file method
     public void saveToFile() {
+        if (userName.equals("") || userPassword.equals("")) {
+            return;
+        }
         try {
             BufferedWriter textWriter = new BufferedWriter(new FileWriter("UserList.txt", true));
-            textWriter.write(userName);
+            textWriter.write(userName + "," + userPassword);
             textWriter.newLine();
             textWriter.close();
         } catch (IOException exception) {
@@ -50,15 +55,16 @@ public class User {
     public void loadInfo() {
         try {
             File fileChecker = new File("UserList.txt");
-            if (fileChecker.exists() && !(userName.equals(""))) {
+            if (fileChecker.exists() && !(userName.equals("") || userPassword.equals(""))) {
                 FileReader file = new FileReader("UserList.txt");
                 Scanner textReader = new Scanner(file);
                 while (textReader.hasNextLine()) {
-                    String fileData = textReader.nextLine();
-                    if (fileData.equals("")) {
+                    String textLine = textReader.nextLine();
+                    String[] fileData = textLine.split(",");
+                    if (fileData[0].equals("")) {
                         break;
                     }
-                    regularUserList.add(fileData);
+                    userNameAndPasswordHashMap.put(fileData[0], fileData[1]);
                 }
                 file.close();
             }
@@ -68,13 +74,8 @@ public class User {
     }
 
     public boolean newUser() {
-        if (userName.equals("")) {
+        if (userNameAndPasswordHashMap.containsKey(userName)) {
             return false;
-        }
-        for (String name: regularUserList) {
-            if (name.equals(userName)) {
-                return false;
-            }
         }
         return true;
     }
