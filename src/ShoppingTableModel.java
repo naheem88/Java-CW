@@ -22,7 +22,6 @@ public class ShoppingTableModel extends AbstractTableModel {
     }
 
     @Override
-    // Need to fix this
     public Object getValueAt(int rowNum, int colNum) {
         Object tableValue = null;
         String productId = this.shoppingCart.get(rowNum).getProductId();

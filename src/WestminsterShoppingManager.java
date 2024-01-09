@@ -27,6 +27,8 @@ public class WestminsterShoppingManager implements ShoppingManager {
         for(Product product: this.productList) {
             if (productId.equals(product.getProductId())) {
                 System.out.println("\nA product with this ID already exists\n");
+                // String productName = input.next();
+                // System.out.print("Do you want to add an item");
                 return;
             }
         }

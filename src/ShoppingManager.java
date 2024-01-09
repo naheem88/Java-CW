@@ -14,5 +14,4 @@ public interface ShoppingManager {
     void loadInfo();
 
     void sortAndPrintProductList();
-
 }

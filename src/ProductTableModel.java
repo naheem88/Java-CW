@@ -9,6 +9,11 @@ public class ProductTableModel extends AbstractTableModel {
         this.productTableList = productArrayList;
     }
 
+    public void updateTable(List<Product> newArrayList) {
+        productTableList = newArrayList;
+        fireTableDataChanged();
+    }
+
     @Override
     public int getRowCount() {
         return this.productTableList.size();

@@ -37,7 +37,6 @@ public class User {
         User.userPassword = userPassword;
     }
 
-    // Implement the file method
     public void saveToFile() {
         if (userName.equals("") || userPassword.equals("")) {
             return;

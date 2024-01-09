@@ -81,7 +81,6 @@ public class ShoppingCartGUI extends JFrame{
             if (userInfo.newUser()) {
                 userInfo.saveToFile();
             }
-            // Add update number of available items
             ShoppingCartGUI.this.dispose();
             homeGUI.dispose();
         }

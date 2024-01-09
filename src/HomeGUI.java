@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.border.Border;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ public class HomeGUI extends JFrame {
     JPanel selectedProductPanel;
     JTextArea textArea;
     JButton addToShoppingCartBtn;
-
     private List<Product> productList;
     private List<Product> electronicList;
     private List<Product> clothingList;
@@ -60,7 +58,10 @@ public class HomeGUI extends JFrame {
         }
 
         // Making table model
-        createTable(productList);
+        mainTableModel = new ProductTableModel(productList);
+        productTable = new JTable(mainTableModel);
+        mainScrollPane = new JScrollPane(productTable);
+        this.add(mainScrollPane, BorderLayout.CENTER);
 
         // Selected Product Panel
         selectedProductPanel = new JPanel();
@@ -84,6 +85,7 @@ public class HomeGUI extends JFrame {
         this.add(selectedProductPanel, BorderLayout.SOUTH);
         cartBtn.addMouseListener(new shpCartBtnHandler());
         productTypeList.addItemListener(new productTypeHandler());
+        productTable.addMouseListener(new productSelectedHandler());
         addToShoppingCartBtn.addMouseListener(new addToShoppingCartHandler());
     }
 
@@ -120,17 +122,18 @@ public class HomeGUI extends JFrame {
     private class productTypeHandler implements ItemListener {
         public void itemStateChanged(ItemEvent event) {
             if (event.getStateChange() == ItemEvent.SELECTED) {
-                HomeGUI.this.remove(mainScrollPane);
                 textArea.setText("");
                 selectedProductPanel.remove(addToShoppingCartBtn);
                 HomeGUI.this.repaint();
-                if (productTypeList.getSelectedItem() == "All") {
-                    createTable(productList);
-                } else if (productTypeList.getSelectedItem() == "Electronics") {
-                    createTable(electronicList);
-                } else if (productTypeList.getSelectedItem() == "Clothing") {
-                    createTable(clothingList);
+                if (productTypeList.getSelectedItem().equals("All")) {
+                    mainTableModel.updateTable(productList);
+                } else if (productTypeList.getSelectedItem().equals("Electronics")) {
+                    mainTableModel.updateTable(electronicList);
+                } else if (productTypeList.getSelectedItem().equals("Clothing")) {
+                    mainTableModel.updateTable(clothingList);
                 }
+                HomeGUI.this.revalidate();
+                HomeGUI.this.repaint();
             }
         }
     }
@@ -139,13 +142,5 @@ public class HomeGUI extends JFrame {
         public void mouseClicked(MouseEvent event) {
             userShoppingCart.addProduct(selectedProduct);
         }
-    }
-
-    private void createTable(List<Product> productList) {
-        mainTableModel = new ProductTableModel(productList);
-        productTable = new JTable(mainTableModel);
-        mainScrollPane = new JScrollPane(productTable);
-        this.add(mainScrollPane, BorderLayout.CENTER);
-        productTable.addMouseListener(new productSelectedHandler());
     }
 }
