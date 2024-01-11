@@ -51,10 +51,10 @@ public abstract class Product implements Comparable<Product>{
 
     @Override
     public String toString() {
-        return "Product ID: " + this.productId + "\n" +
-                "Product Name: " + this.productName + "\n" +
-                "Number of Available items: " + this.numOfAvailItem + "\n" +
-                "Product Price: £" + this.productPrice;
+        return "Product ID: " + this.productId + "\n" + "\n" +
+                "Product Name: " + this.productName + "\n" + "\n" +
+                "Number of Available items: " + this.numOfAvailItem + "\n" + "\n" +
+                "Product Price: £" + this.productPrice + "\n";
     }
 
     @Override

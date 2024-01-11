@@ -1,12 +1,12 @@
 Aaaaa,Aaaaa,98,98.0,Electronic,Aaaaa , 98 Weeks Warranty
-Aaaaa9999,Aaaaa,98,98.0,Clothing,Aaaaa, Aaaaa
+Aaaaa,Aaaaa,98,98.0,Electronic,Aaaaa , 98 Weeks Warranty
+Aaaaa,Aaaaa,98,98.0,Electronic,Aaaaa , 98 Weeks Warranty
+Aaaaa,Aaaaa,98,98.0,Electronic,Aaaaa , 98 Weeks Warranty
+Aaaaa,Aaaaa,98,98.0,Electronic,Aaaaa , 98 Weeks Warranty
 Aaaaa,Aaaaa,98,98.0,Electronic,Aaaaa , 98 Weeks Warranty
 Aaaaa9999,Aaaaa,98,98.0,Clothing,Aaaaa, Aaaaa
-Aaaaa,Aaaaa,98,98.0,Electronic,Aaaaa , 98 Weeks Warranty
 Aaaaa9999,Aaaaa,98,98.0,Clothing,Aaaaa, Aaaaa
-Aaaaa,Aaaaa,98,98.0,Electronic,Aaaaa , 98 Weeks Warranty
 Aaaaa9999,Aaaaa,98,98.0,Clothing,Aaaaa, Aaaaa
-Aaaaa,Aaaaa,98,98.0,Electronic,Aaaaa , 98 Weeks Warranty
 Aaaaa9999,Aaaaa,98,98.0,Clothing,Aaaaa, Aaaaa
-Aaaaa,Aaaaa,98,98.0,Electronic,Aaaaa , 98 Weeks Warranty
+Aaaaa9999,Aaaaa,98,98.0,Clothing,Aaaaa, Aaaaa
 Aaaaa9999,Aaaaa,98,98.0,Clothing,Aaaaa, Aaaaa

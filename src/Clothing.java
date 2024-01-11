@@ -36,6 +36,6 @@ public class Clothing extends Product{
 
     @Override
     public String printProductInfo() {
-        return "Size: " + this.size + "\n" + "Colour: " + this.colour;
+        return "Size: " + this.size + "\n" + "\n" + "Colour: " + this.colour;
     }
 }

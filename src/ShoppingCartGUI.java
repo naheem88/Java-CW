@@ -54,24 +54,31 @@ public class ShoppingCartGUI extends JFrame{
         mainPanel.add(new JLabel());
         mainPanel.add(totPrice);
         mainPanel.add(new JLabel("  " + totalPrice + " £"));
+
         mainPanel.add(new JLabel());
         mainPanel.add(new JLabel());
         mainPanel.add(newUserDiscount);
         mainPanel.add(new JLabel("- " + newUserDiscountPrice + " £"));
+
         mainPanel.add(new JLabel());
         mainPanel.add(new JLabel());
         mainPanel.add(categoryDiscount);
         mainPanel.add(new JLabel("- " + categoryDiscountPrice + " £"));
+
         mainPanel.add(new JLabel());
         mainPanel.add(new JLabel());
         mainPanel.add(finalTotal);
         mainPanel.add(new JLabel("  " + finalTotPrice + " £"));
 
         buyBtn = new JButton("Buy");
+        JPanel buyPanel = new JPanel();
+        buyPanel.add(new JLabel(), BorderLayout.WEST);
+        buyPanel.add(new JLabel(), BorderLayout.EAST);
+        buyPanel.add(buyBtn, BorderLayout.CENTER);
 
         this.add(shoppingCartScrollPane, BorderLayout.NORTH);
         this.add(mainPanel, BorderLayout.CENTER);
-        this.add(buyBtn, BorderLayout.SOUTH);
+        this.add(buyPanel, BorderLayout.SOUTH);
         buyBtn.addMouseListener(new buyBtnHandler());
     }
 

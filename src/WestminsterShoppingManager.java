@@ -27,8 +27,6 @@ public class WestminsterShoppingManager implements ShoppingManager {
         for(Product product: this.productList) {
             if (productId.equals(product.getProductId())) {
                 System.out.println("\nA product with this ID already exists\n");
-                // String productName = input.next();
-                // System.out.print("Do you want to add an item");
                 return;
             }
         }
@@ -79,10 +77,15 @@ public class WestminsterShoppingManager implements ShoppingManager {
     }
 
     public void printInfo(Product product) {
-        System.out.println("\nProduct Information\n");
+        System.out.println("\n----------------------------------------------------------------------------------------------------------\n");
+        System.out.println("                                            -----------------------");
+        System.out.println("                                            | Product Information |");
+        System.out.println("                                            -----------------------\n");
         System.out.println(product.toString() + "\n" +
-                "Type of Product: " + product.getProductType() + "\n" +
+                "Type of Product: " + product.getProductType() + "\n" + "\n" +
                 product.printProductInfo());
+                System.out.println();
+                System.out.println("----------------------------------------------------------------------------------------------------------");
     }
 
     public void saveToFile() {

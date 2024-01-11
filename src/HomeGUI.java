@@ -16,6 +16,8 @@ public class HomeGUI extends JFrame {
     JPanel selectedProductPanel;
     JTextArea textArea;
     JButton addToShoppingCartBtn;
+    JPanel productBtnPanel;
+
     private List<Product> productList;
     private List<Product> electronicList;
     private List<Product> clothingList;
@@ -49,6 +51,7 @@ public class HomeGUI extends JFrame {
         electronicList = new ArrayList<>();
         clothingList = new ArrayList<>();
 
+        // Creating lists for the electronic and clothing products
         for (Product product : productList) {
             if (product instanceof Electronic) {
                 electronicList.add(product);
@@ -65,18 +68,21 @@ public class HomeGUI extends JFrame {
 
         // Selected Product Panel
         selectedProductPanel = new JPanel();
-        selectedProductPanel.setLayout(new GridLayout(2, 3));
+        selectedProductPanel.setLayout(new BorderLayout());
         textArea = new JTextArea(7,1);
         textArea.setBackground(new Color(0, 0, 0, 0));
         textArea.setEditable(false);
 
-        selectedProductPanel.add(textArea);
+        selectedProductPanel.add(textArea, BorderLayout.WEST);
         addToShoppingCartBtn = new JButton("Add to Shopping Cart");
-        selectedProductPanel.add(new JLabel());
-        selectedProductPanel.add(new JLabel());
-        selectedProductPanel.add(new JLabel());
+        
+        productBtnPanel = new JPanel();
 
-         Border emptyBorder2 = BorderFactory.createEmptyBorder(10, 20, 10, 0);
+        productBtnPanel.add(new JLabel(), BorderLayout.WEST);
+        productBtnPanel.add(new JLabel(), BorderLayout.EAST);
+        
+
+        Border emptyBorder2 = BorderFactory.createEmptyBorder(10, 20, 10, 0);
 
         selectedProductPanel.setBorder(emptyBorder2);
 
@@ -106,9 +112,10 @@ public class HomeGUI extends JFrame {
                 Object productId = productTable.getModel().getValueAt(clickedRow, 0);
                 for (Product product : productList) {
                     if (productId.equals(product.getProductId())) {
-                        String productSelectedInfo = "Selected Product - Details\n" + product + "\n" + product.printProductInfo();
+                        String productSelectedInfo = "Selected Product - Details\n" + "\n" + product + "\n" + product.printProductInfo();
                         textArea.setText(productSelectedInfo);
-                        selectedProductPanel.add(addToShoppingCartBtn);
+                        selectedProductPanel.add(productBtnPanel, BorderLayout.SOUTH);
+                        productBtnPanel.add(addToShoppingCartBtn, BorderLayout.CENTER);
                         selectedProduct = product;
                         // Refreshes the JFrame
                         HomeGUI.this.repaint();
@@ -123,7 +130,7 @@ public class HomeGUI extends JFrame {
         public void itemStateChanged(ItemEvent event) {
             if (event.getStateChange() == ItemEvent.SELECTED) {
                 textArea.setText("");
-                selectedProductPanel.remove(addToShoppingCartBtn);
+                selectedProductPanel.remove(productBtnPanel);
                 HomeGUI.this.repaint();
                 if (productTypeList.getSelectedItem().equals("All")) {
                     mainTableModel.updateTable(productList);
