@@ -23,18 +23,23 @@ public class Main {
                 int userChoice = input.nextInt();
                 switch (userChoice) {
                     case 1:
+                        // Add product
                         shopManager.addProduct();
                         break;
                     case 2:
+                        // Remove product
                         shopManager.removeProduct();
                         break;
                     case 3:
+                        // Print list of products
                         shopManager.sortAndPrintProductList();
                         break;
                     case 4:
+                        // Save to file
                         shopManager.saveToFile();
                         break;
                     case 5:
+                        
                         UserLoginGUI userLoginFrame = new UserLoginGUI(shopManager);
                         // Settings for the frame
                         userLoginFrame.setSize(480,280);

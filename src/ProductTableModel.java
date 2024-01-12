@@ -2,6 +2,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
 public class ProductTableModel extends AbstractTableModel {
+    // Instance Variables
     private final String[] colNames = {"Product ID", "Name", "Category", "Price (£)", "Info"};
     private List<Product> productTableList;
 
@@ -9,8 +10,10 @@ public class ProductTableModel extends AbstractTableModel {
         this.productTableList = productArrayList;
     }
 
+    // Method to update the table
     public void updateTable(List<Product> newArrayList) {
         productTableList = newArrayList;
+        // Notifies the table that the data has changed
         fireTableDataChanged();
     }
 

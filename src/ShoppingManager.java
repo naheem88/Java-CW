@@ -3,6 +3,7 @@ import java.util.List;
 public interface ShoppingManager {
 
     List<Product> getProductList();
+    
     void addProduct();
 
     void removeProduct();

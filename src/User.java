@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class User {
+    // Instance Variables
     private static String userName;
     private static String userPassword;
     private static HashMap<String, String> userNameAndPasswordHashMap;
@@ -38,10 +39,12 @@ public class User {
     }
 
     public void saveToFile() {
+        // Checking if the user has entered a username and password
         if (userName.equals("") || userPassword.equals("")) {
             return;
         }
         try {
+            // Saving the user information to a file
             BufferedWriter textWriter = new BufferedWriter(new FileWriter("UserList.txt", true));
             textWriter.write(userName + "," + userPassword);
             textWriter.newLine();
@@ -53,13 +56,17 @@ public class User {
 
     public void loadInfo() {
         try {
+            // Loading the user information from a file
             File fileChecker = new File("UserList.txt");
+            // Checking if the file exists
             if (fileChecker.exists() && !(userName.equals("") || userPassword.equals(""))) {
                 FileReader file = new FileReader("UserList.txt");
                 Scanner textReader = new Scanner(file);
                 while (textReader.hasNextLine()) {
+                    // Reading the file line by line
                     String textLine = textReader.nextLine();
                     String[] fileData = textLine.split(",");
+                    // Checking if the file is empty
                     if (fileData[0].equals("")) {
                         break;
                     }
@@ -73,6 +80,7 @@ public class User {
     }
 
     public boolean newUser() {
+        // Checking if the user is a new user
         if (userNameAndPasswordHashMap.containsKey(userName)) {
             return false;
         }

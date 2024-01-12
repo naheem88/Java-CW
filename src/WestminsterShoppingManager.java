@@ -16,14 +16,17 @@ public class WestminsterShoppingManager implements ShoppingManager {
 
     public void addProduct() {
         Scanner input = new Scanner(System.in);
+        // Checking if the system has reached it's maximum capacity
         if (this.productList.size() >= 50) {
             System.out.println("\nThe system has reached it's maximum capacity");
             System.out.println("Can not add anymore products\n");
             return;
         }
+        // Getting the product information
         System.out.println("\nProduct Information\n");
         System.out.print("Product ID: ");
         String productId = input.next().stripLeading().stripTrailing();
+        // Checking if the product ID already exists
         for(Product product: this.productList) {
             if (productId.equals(product.getProductId())) {
                 System.out.println("\nA product with this ID already exists\n");
@@ -38,6 +41,7 @@ public class WestminsterShoppingManager implements ShoppingManager {
         double price = input.nextDouble();
         System.out.print("Type of Product(Electronics = 1 or Clothing = 2): ");
         int typeOfProduct = input.nextInt();
+        // Checking the type of product
         if (typeOfProduct == 1) {
             System.out.print("Brand Name: ");
             String brandName = input.next();
@@ -65,6 +69,7 @@ public class WestminsterShoppingManager implements ShoppingManager {
         String productId = input.next().stripLeading().stripTrailing();
         for (int count = 0; count < this.productList.size(); count++) {
             if (productId.equals((this.productList.get(count)).getProductId())) {
+                // Removing the product
                 printInfo(this.productList.get(count));
                 this.productList.remove(count);
                 System.out.println("\nNumber of products remaining: " + this.productList.size() + "\n");
@@ -77,6 +82,7 @@ public class WestminsterShoppingManager implements ShoppingManager {
     }
 
     public void printInfo(Product product) {
+        // Printing the product information
         System.out.println("\n----------------------------------------------------------------------------------------------------------\n");
         System.out.println("                                            -----------------------");
         System.out.println("                                            | Product Information |");
@@ -90,7 +96,9 @@ public class WestminsterShoppingManager implements ShoppingManager {
 
     public void saveToFile() {
         try {
+            // Saving the product information into a text file
             FileWriter textWriter = new FileWriter("ProductInfo.txt");
+            // Writing the product information into the text file
             for (Product product: this.getProductList()) {
                 textWriter.write(product.getProductId() + "," +
                         product.getProductName() + "," +
@@ -98,6 +106,7 @@ public class WestminsterShoppingManager implements ShoppingManager {
                         product.getProductPrice() + "," +
                         product.getProductType() + "," +
                         product.getProductInfo());
+                // Adding a new line after each product
                 textWriter.write(System.lineSeparator());
             }
             textWriter.close();
@@ -109,11 +118,13 @@ public class WestminsterShoppingManager implements ShoppingManager {
 
     public void loadInfo() {
         try {
+            // Loading the product information from the text file
             FileReader file = new FileReader("ProductInfo.txt");
             Scanner textReader = new Scanner(file);
             while (textReader.hasNextLine()) {
                 String textLine = textReader.nextLine();
                 String[] fileData = textLine.split(",");
+                // Checking if the file is empty
                 if (fileData[0].equals("")) {
                     return;
                 }
@@ -142,6 +153,7 @@ public class WestminsterShoppingManager implements ShoppingManager {
     }
 
     public void sortAndPrintProductList() {
+        // Sorting the product list
         Collections.sort(this.productList);
         for (Product product: this.productList) {
             this.printInfo(product);

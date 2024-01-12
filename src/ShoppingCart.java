@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class ShoppingCart {
+    // Instance Variables
     private List<Product> productList;
     private List<Product> duplicateProductList;
     private double totalPrice;
@@ -37,8 +38,10 @@ public class ShoppingCart {
     }
 
     public void removeDuplicateProduct() {
+        // Removing duplicate products
         Set<Product> removeDuplicateProductSet = new HashSet<>(this.productList);
         this.productList = new ArrayList<>(removeDuplicateProductSet);
+        // Sorting the product list
         Collections.sort(this.productList);
 
     }
@@ -46,6 +49,7 @@ public class ShoppingCart {
     public void getProductQuantity() {
         for (Product product: this.duplicateProductList) {
             int count = 0;
+            // Counting the quantity of a product 
             for (Product product2: this.duplicateProductList) {
                 if (product2.getProductId().equals(product.getProductId())) {
                     count++;
@@ -57,6 +61,7 @@ public class ShoppingCart {
 
     public double totPrice() {
         for (Product product : this.productList) {
+            // Calculating the total price of the products in the shopping cart
             double totProductPrice = ((product.getProductPrice()) * (productQuantityHashMap.get(product.getProductId())));
             this.totalPrice += totProductPrice;
         }
