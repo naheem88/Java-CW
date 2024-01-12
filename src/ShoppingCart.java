@@ -4,7 +4,6 @@ public class ShoppingCart {
     private List<Product> productList;
     private List<Product> duplicateProductList;
     private double totalPrice;
-
     private HashMap<String, Integer> productQuantityHashMap;
 
     public ShoppingCart() {

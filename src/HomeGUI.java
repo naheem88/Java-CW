@@ -35,17 +35,15 @@ public class HomeGUI extends JFrame {
         topPanel.setBorder(emptyBorder);
         menu = new JPanel();
 
-        topPanel.setLayout(new GridLayout(2, 4));
+        topPanel.setLayout(new BorderLayout());
         menu.add(new JLabel("Select Product Category"));
         productTypeList = new JComboBox<>(new String[]{"All", "Electronics", "Clothing"});
         menu.add(productTypeList);
+
         cartBtn = new JButton("Shopping Cart");
 
-        topPanel.add(new JLabel());
-        topPanel.add(new JLabel());
-        topPanel.add(cartBtn);
-        topPanel.add(new JLabel());
-        topPanel.add(menu);
+        topPanel.add(cartBtn, BorderLayout.EAST);
+        topPanel.add(menu, BorderLayout.CENTER);
 
         productList = shopManager.getProductList();
         electronicList = new ArrayList<>();
@@ -82,7 +80,7 @@ public class HomeGUI extends JFrame {
         productBtnPanel.add(new JLabel(), BorderLayout.EAST);
         
 
-        Border emptyBorder2 = BorderFactory.createEmptyBorder(10, 20, 10, 0);
+        Border emptyBorder2 = BorderFactory.createEmptyBorder(40, 20, 10, 0);
 
         selectedProductPanel.setBorder(emptyBorder2);
 

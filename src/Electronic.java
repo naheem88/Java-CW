@@ -36,6 +36,6 @@ public class Electronic extends Product {
 
     @Override
     public String printProductInfo() {
-        return "Brand Name: " + this.brandName + "\n" + "\n" +  "Warranty Period: " + this.warrantyPeriod;
+        return "Brand Name: " + this.brandName + "\n" +  "Warranty Period: " + this.warrantyPeriod;
     }
 }

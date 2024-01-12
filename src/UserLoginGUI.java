@@ -7,12 +7,12 @@ public class UserLoginGUI extends JFrame {
 
     JLabel usernameLabel;
     JLabel passwordLabel;
+    JDialog dialogBox;
+    JLabel dialogBoxLabel;
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginBtn;
     private WestminsterShoppingManager shoppingManager;
-    JDialog dialogBox;
-    JLabel dialogBoxLabel;
 
     public UserLoginGUI(WestminsterShoppingManager shoppingManager) {
         setTitle("User Login");

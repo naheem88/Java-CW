@@ -16,21 +16,21 @@ public class ShoppingCartGUI extends JFrame{
     JLabel finalTotal;
     JButton buyBtn;
     HomeGUI homeGUI;
+    private List<Product> userCart;
 
     public ShoppingCartGUI(List<Product> userShoppingCart, HashMap<String, Integer> productQuantityHashMap, HomeGUI homeGUI) {
         this.homeGUI = homeGUI;
         this.setTitle("Shopping Cart");
         this.setLayout(new BorderLayout());
         ShoppingCart shoppingCart = new ShoppingCart();
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(4, 4));
-
-        shoppingCartTableModel = new ShoppingTableModel(userShoppingCart, productQuantityHashMap);
+        userCart = userShoppingCart;
+    
+        shoppingCartTableModel = new ShoppingTableModel(userCart, productQuantityHashMap);
         shoppingCartTable = new JTable(shoppingCartTableModel);
         shoppingCartScrollPane = new JScrollPane(shoppingCartTable);
 
         shoppingCart.setProductQuantityHashMap(productQuantityHashMap);
-        shoppingCart.setProductList(userShoppingCart);
+        shoppingCart.setProductList(userCart);
 
         double totalPrice = shoppingCart.totPrice();
         double categoryDiscountPrice = shoppingCart.categoryDiscount(totalPrice);
@@ -42,33 +42,25 @@ public class ShoppingCartGUI extends JFrame{
         } else {
             newUserDiscountPrice = 0;
         }
-        newUserDiscount = new JLabel("First Purchase Discount (10%)");
 
         double finalTotPrice = totalPrice - (newUserDiscountPrice + categoryDiscountPrice);
 
-        totPrice = new JLabel("Total Price");
-        categoryDiscount = new JLabel("Three Items in the same Category Discount (20%)");
-        finalTotal = new JLabel("Final Total");
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(4, 2));
+        
+        
+        mainPanel.add(new JLabel());
+        mainPanel.add(new JLabel("Total Price " + "                                                                         " + totalPrice + " £"));
+
+        
+        mainPanel.add(new JLabel()); 
+        mainPanel.add(new JLabel("First Purchase Discount (10%)                                      " + "- " + newUserDiscountPrice + " £"));
 
         mainPanel.add(new JLabel());
+        mainPanel.add(new JLabel("Three Items in the same Category Discount (20%)    " + "- " + categoryDiscountPrice + " £"));
+        
         mainPanel.add(new JLabel());
-        mainPanel.add(totPrice);
-        mainPanel.add(new JLabel("  " + totalPrice + " £"));
-
-        mainPanel.add(new JLabel());
-        mainPanel.add(new JLabel());
-        mainPanel.add(newUserDiscount);
-        mainPanel.add(new JLabel("- " + newUserDiscountPrice + " £"));
-
-        mainPanel.add(new JLabel());
-        mainPanel.add(new JLabel());
-        mainPanel.add(categoryDiscount);
-        mainPanel.add(new JLabel("- " + categoryDiscountPrice + " £"));
-
-        mainPanel.add(new JLabel());
-        mainPanel.add(new JLabel());
-        mainPanel.add(finalTotal);
-        mainPanel.add(new JLabel("  " + finalTotPrice + " £"));
+        mainPanel.add(new JLabel("Final Total" + "                                                                           " + finalTotPrice + " £"));
 
         buyBtn = new JButton("Buy");
         JPanel buyPanel = new JPanel();
@@ -84,12 +76,14 @@ public class ShoppingCartGUI extends JFrame{
 
     private class buyBtnHandler extends MouseAdapter {
         public void mouseClicked(MouseEvent event) {
-            User userInfo = new User();
-            if (userInfo.newUser()) {
-                userInfo.saveToFile();
+            if (userCart.size() >= 1) {
+                User userInfo = new User();
+                if (userInfo.newUser()) {
+                    userInfo.saveToFile();
+                }
+                ShoppingCartGUI.this.dispose();
+                homeGUI.dispose();
             }
-            ShoppingCartGUI.this.dispose();
-            homeGUI.dispose();
         }
     }
 }
