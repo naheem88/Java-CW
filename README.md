@@ -15,7 +15,7 @@ The design of your system should be consistent with the Object-oriented principl
 You are required to design your program using UML diagrams. In particular, you have to draw:
 • A UML use case diagram for the system (6 marks).
 • A UML class diagram (6 marks)
-Read carefully the following requirements. It is important that you follow the specifications, and your design and implementa􏰁on must comply with these.
+Read carefully the following requirements. It is important that you follow the specifications, and your design and implementation must comply with these.
 According to the Inheritance and encapsulation principles, you have to design and implement a super-class Product and the subclasses Electronics and Clothing. Also, you will have to add at least one constructor for each class.
 The class Product should be abstract and include appropriate get/set methods and hold information about the product ID (mix of characters and numbers), product name, number of available items and the price (4 marks). (You can add any other information that you consider appropriate).
 In particular:
@@ -30,10 +30,10 @@ username and password, constructors, and the relative get/set methods (3 marks).
 2. Console Menu Implementation (Phase2)
 The class WestminsterShoppingManager should display a menu in the console (not in the GUI) containing the
 following management actions from which the manager can select one. – You should have a menu with a list of options
-• Add a new product to the system. It should be possible to add either electronics or clothing, with all the relevant informa􏰁on (all the attributes defined in the relative class). You should consider that the system can have a maximum of 50 products (5 marks).
-• Delete a product from the system, inserting the product ID. Display a message with the informa􏰁on of the product (if it is electronics or clothing) that has been deleted and the total number of products left in the system (5 marks).
-• Print the list of the products in the system. For each product, print on the screen all the information (a􏰃ributes defined in the corresponding class) and say if it is electronics or clothing. The list should be ordered alphabetically according to the product ID (6 marks).
-• Save in a file the list of products that have been added to the system, with all the rela􏰁ve attributes. The next time the application starts, it should be able to read back all the informa􏰁on saved in the file and continue to use the system (6 marks).
+• Add a new product to the system. It should be possible to add either electronics or clothing, with all the relevant information (all the attributes defined in the relative class). You should consider that the system can have a maximum of 50 products (5 marks).
+• Delete a product from the system, inserting the product ID. Display a message with the information of the product (if it is electronics or clothing) that has been deleted and the total number of products left in the system (5 marks).
+• Print the list of the products in the system. For each product, print on the screen all the information (attributes defined in the corresponding class) and say if it is electronics or clothing. The list should be ordered alphabetically according to the product ID (6 marks).
+• Save in a file the list of products that have been added to the system, with all the relative attributes. The next time the application starts, it should be able to read back all the information saved in the file and continue to use the system (6 marks).
 3. Graphical User Interface (GUI) Implementation (Phase3)
 Whilst the manager interacts with the system through the menu console, the client will interact with the system through a graphical user interface.
 Open a Graphical User Interface (GUI) from the menu console – you will have an additional option that the user can select to open the GUI.
@@ -41,7 +41,7 @@ Note: The GUI should look like the mock-up provided below. If your GUI appears d
 • The user can select from a drop-down menu which type of product can be visualised (all, Electronics, or Clothes) (4 marks).
 • The user can visualise the list of products with relative information as displayed below.
 • The user should be able to sort the list alphabetically. You should use a table to display this information on the GUI. (6 marks).
-• The user can select a product and add it to a Shopping Cart. When implemen􏰁ng these functionalities, you need to comply with the following requirements:
+• The user can select a product and add it to a Shopping Cart. When implementing these functionalities, you need to comply with the following requirements:
 • The items with reduced availability (less than 3 items available) should be in red on the table. (2 marks).
 • When the user selects the product, the product details (all the information related to the product) should appear in a panel below the table (5 marks).
 • The user can add the item to the shopping cart by clicking the relative button. The user can visualise the shopping cart by clicking the “Shopping Cart” button. The user can select another item and keep adding items to the shopping cart (6 marks).
