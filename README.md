@@ -48,5 +48,3 @@ Note: The GUI should look like the mock-up provided below. If your GUI appears d
 • The shopping cart will show the list of products and the final price (6 marks). To calculate the final price, the system will apply the following discounts:
 • 20% discount when the user buys at least three products of the same category.
 • 10% discount for the very first purchase. – in order to implement this functionality, you will have to keep the history of the purchases made by each client. You can do this in different ways: if you would like to add extra classes, you can do so, and this will be reflected in your class diagram too.
-
-• If the discount is applied, the message will appear on the GUI showing the final cost as displayed below.
